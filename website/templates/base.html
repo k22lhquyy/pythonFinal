@@ -48,14 +48,14 @@
 
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <!-- Cart item -->
-          <li class="nav-item mx-2" id="items">
+          <li class="nav-item mx-2" id="item1">
             <a class="nav-link text-grey" href="/cart"><span class="badge bg-success"></span> Cart
               <i class="fa-solid fa-cart-shopping"></i>
             </a>
           </li>
 
           <!-- Wishlist item -->
-          <li class="nav-item mx-2" id="items">
+          <li class="nav-item mx-2" id="item">
             <a class="nav-link text-grey" href="#"><span class="badge bg-success"></span> WishList
               <i class="fa-solid fa-heart"></i>
             </a>
@@ -63,14 +63,21 @@
 
           <!-- Account Dropdown -->
           <li class="nav-item dropdown mx-2">
-            <a class="nav-link dropdown-toggle text-grey" href="#" role="button" id="profileDropdown" 
+            <a class="nav-link dropdown-toggle text-grey" href="#" role="button", id="profileDropdown"
             data-bs-toggle="dropdown" aria-hidden="false">
               Account
             </a>
             <ul class="dropdown-menu" aria-labelledby="profileDropdown">
-              <!-- Conditional display based on user login (simulated without Flask-Login) -->
+              {% if current_user.is_authenticated %}
+              <li><a class="dropdown-item" href="/profile/{{ current_user.id }}">Profile <i class="fa-solid fa-user"></i></a></li>
+              <li><a class="dropdown-item" href="/orders">Orders <i class="fa-solid fa-truck-fast"></i></a></li>
+              <li><a class="dropdown-item" href="/logout">Log Out <i class="fa-solid fa-right-from-bracket"></i></a></li>
+              {% else %}
               <li><a class="dropdown-item" href="/login">Login <i class="fa-solid fa-right-to-bracket"></i></a></li>
+              {% endif %}
+
             </ul>
+
           </li>
         </ul>
       </div>
